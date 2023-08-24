@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 및 회원가입 예제</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            {% if 'username' in session %}
+                <p>안녕하세요, {{ session['username'] }}님! <a href="{{ url_for('logout') }}">로그아웃</a></p>
+            {% else %}
+                <h2>로그인</h2>
+                <form method="post" action="/login">
+                    <div class="input-container">
+                        <input type="text" name="username" placeholder="사용자 이름" required>
+                    </div>
+                    <div class="input-container">
+                        <input type="password" name="password" placeholder="비밀번호" required>
+                    </div>
+                    <button type="submit">로그인</button>
+                </form>
+            {% endif %}
+        </div>
+        <div class="form-container">
+            <h2>회원가입</h2>
+            <form method="post" action="/signup">
+                <div class="input-container">
+                    <input type="text" name="username" placeholder="사용자 이름" required>
+                </div>
+                <div class="input-container">
+                    <input type="password" name="password" placeholder="비밀번호" required>
+                </div>
+                <button type="submit">회원가입</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+</body>
+</html>
