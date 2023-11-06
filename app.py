@@ -4,7 +4,6 @@ import hashlib
 import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
 
 conn = sqlite3.connect('users.db', check_same_thread=False)
 conn.execute('CREATE TABLE IF NOT EXISTS users (username TEXT, password_salt TEXT, password_hash TEXT)')
